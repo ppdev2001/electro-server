@@ -19,6 +19,7 @@ import com.electro.entity.order.Order;
 import com.electro.entity.order.OrderVariant;
 import com.electro.entity.waybill.Waybill;
 import com.electro.entity.waybill.WaybillLog;
+import com.electro.entity.authentication.User;
 import com.electro.exception.ResourceNotFoundException;
 import com.electro.mapper.general.NotificationMapper;
 import com.electro.mapper.waybill.WaybillMapper;
@@ -227,6 +228,12 @@ public class WaybillServiceImpl implements WaybillService {
         ghnCreateOrderRequest.setPaymentTypeId(chooseGhnPaymentTypeId(order.getPaymentMethodType()));
         ghnCreateOrderRequest.setNote(waybillRequest.getNote());
         ghnCreateOrderRequest.setRequiredNote(waybillRequest.getGhnRequiredNote());
+        ghnCreateOrderRequest.setFromName("Electro Shop");
+        ghnCreateOrderRequest.setFromPhone("0342285485");
+        ghnCreateOrderRequest.setFromAddress("55 Giải Phóng");
+        ghnCreateOrderRequest.setFromWardName("Phường Đồng Tâm");
+        ghnCreateOrderRequest.setFromDistrictName("Quận Hai Bà Trưng");
+        ghnCreateOrderRequest.setFromProvinceName("Hà Nội");
         ghnCreateOrderRequest.setToName(order.getToName());
         ghnCreateOrderRequest.setToPhone(order.getToPhone());
         ghnCreateOrderRequest.setToAddress(order.getToAddress());
@@ -380,6 +387,10 @@ public class WaybillServiceImpl implements WaybillService {
         } else {
             throw new RuntimeException("ShopId is not valid");
         }
+    }
+
+    private void setShopInformation() {
+
     }
 
     private void createNotification(Notification notification) {
